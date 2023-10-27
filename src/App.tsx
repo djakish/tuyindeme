@@ -1,6 +1,6 @@
 import { createMutable, modifyMutable, produce } from 'solid-js/store';
 import ResumeForm from './components/ResumeForm';
-import TypstWorker from './compiler.worker?worker&inline'
+import TypstWorker from './compiler.worker?worker'
 import { createSignal, onMount } from 'solid-js';
 import { Resume, Template } from './types';
 import { mizlan, skyzh } from './templates';
