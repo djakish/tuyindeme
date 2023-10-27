@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: #202020;
+    --secondary: #ffffff;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply py-2 px-4 bg-secondary border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-secondary focus:outline-none active:translate-y-1 active:translate-x-1;
+  }
+
+  .btn-primary-dark {
+    @apply py-2 px-4 bg-primary border-2 border-secondary text-secondary font-semibold hover:bg-secondary hover:text-primary focus:outline-none active:translate-y-1 active:translate-x-1;
+  }
+
+  .input-primary {
+    @apply py-2 px-4 bg-secondary border-2 border-primary text-primary dark:bg-primary dark:border-secondary dark:text-secondary font-semibold focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-secondary placeholder-gray-400;
+  }
+
+  .heading-primary {
+    @apply text-primary dark:text-secondary text-lg font-bold select-none
+  }
+
+  .heading-secondary {
+    @apply text-secondary dark:text-primary text-lg font-bold select-none
+  }
+}
