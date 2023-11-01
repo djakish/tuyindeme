@@ -9,8 +9,4 @@ export default defineConfig({
     wasm(),
     topLevelAwait()
   ],
-  build: {
-    target: 'esnext',
-    minify: true,
-  },
 })

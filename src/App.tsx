@@ -1,13 +1,26 @@
 import { createMutable, modifyMutable, produce } from 'solid-js/store';
 import ResumeForm from './components/ResumeForm';
-import TypstWorker from './compiler.worker?worker'
-import { createSignal, onMount } from 'solid-js';
+import { createSignal } from 'solid-js';
 import { Resume, Template } from './types';
 import { mizlan, skyzh } from './templates';
+import { addFont, setSource, renderSvgMerged, renderPdf } from '@djakish/render-typst';
+import inter_bold from '../src/assets/fonts/Inter-Bold.ttf'
+import inter_extra_bold from '../src/assets/fonts/Inter-ExtraBold.ttf'
+import inter_regular from '../src/assets/fonts/Inter-Regular.ttf'
+import lin_r from '../src/assets/fonts/LinBiolinum_R.ttf'
+import lin_rb from '../src/assets/fonts/LinBiolinum_RB.ttf'
+import lin_ri from '../src/assets/fonts/LinBiolinum_RI.ttf'
+import newcmm from '../src/assets/fonts/NewCMMath-Book.otf'
+
+await addFont(inter_bold)
+await addFont(inter_extra_bold)
+await addFont(inter_regular)
+await addFont(lin_r)
+await addFont(lin_rb)
+await addFont(lin_ri)
+await addFont(newcmm)
 
 function App() {
-  let typstWorker: Worker;
-
   let state = createMutable({
     name: "Your name",
     urls: [{ title: "github.com/typst/typst" }, { title: "Descriptions have eval" }],
@@ -63,58 +76,46 @@ function App() {
     ]
   });
 
-  onMount(async () => {
-    if (window.Worker) {
-      typstWorker = typstWorker instanceof Worker ? typstWorker : new TypstWorker()
+  const stringToBytes = (val: string) => {
+    const result = [];
+    for (let i = 0; i < val.length; i++) {
+      result.push(val.charCodeAt(i));
     }
-  });
+    return result;
+  }
+
+  const build_string = (json: string) => {
+    let bytes = stringToBytes(json)
+    let data = `#makeresume(json.decode(bytes((${bytes.join(",")}))))\n`;
+    let dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    let color = dark ? template().dark : template().white
+    return {data, color}
+  }
 
   const render = async () => {
-    if (window.Worker) {
+    let res = build_string(JSON.stringify(state))
+    setSource(res.color + template().style + res.data)
 
-      typstWorker = typstWorker instanceof Worker ? typstWorker : new TypstWorker()
-
-      const json = JSON.stringify(state);
-      typstWorker.postMessage({
-        format: 'svg',
-        json: json,
-        template: template(),
-        dark: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-      });
-      typstWorker.addEventListener('message', function (e) {
-        if (e.data.type == 'svg') {
-          const preview = document.getElementById("preview") as HTMLDivElement
-          // I couldn't figure out how to set the style with typescript so this is how i did it
-          const part2 = e.data.res.slice(22)
-          const res = `<svg class="h-full w-full "` + part2;
-          preview.innerHTML = res;
-        }
-      })
-    }
+    let svg = renderSvgMerged();
+    const preview = document.getElementById("preview") as HTMLDivElement
+    // I couldn't figure out how to set the style with typescript so this is how i did it
+    const part2 = svg.slice(22)
+    const styled = `<svg class="h-full w-full "` + part2;
+    preview.innerHTML = styled;
   }
 
   const download = async () => {
-    if (window.Worker) {
-      typstWorker = typstWorker instanceof Worker ? typstWorker : new TypstWorker()
+    let res = build_string(JSON.stringify(state))
+    setSource(template().white + template().style + res.data)
 
-      const json = JSON.stringify(state);
-      typstWorker.postMessage({
-        format: 'pdf',
-        json: json,
-        template: template(),
-      });
+    let pdf = renderPdf();
 
-      typstWorker.addEventListener('message', function (e) {
-        if (e.data.type == 'pdf') {
-          var blob = new Blob([e.data.res], { type: 'application/pdf' });
-          var link = document.createElement('a');
-          link.href = window.URL.createObjectURL(blob);
-          link.download = "resume.pdf";
-          link.click();
-          link.remove();
-        }
-      })
-    }
+    var blob = new Blob([pdf], { type: 'application/pdf' });
+    var link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = "resume.pdf";
+    link.click();
+    link.remove();
   }
 
   const importData = async (e: any) => {
