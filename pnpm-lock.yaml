@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@djakish/render-typst':
+    specifier: ^0.1.1
+    version: 0.1.1
   cssnano:
     specifier: ^6.0.1
     version: 6.0.1(postcss@8.4.31)
@@ -372,6 +375,10 @@ packages:
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
     dev: true
+
+  /@djakish/render-typst@0.1.1:
+    resolution: {integrity: sha512-B3KSPIuwLGCxjJxXqYAdyFaxSdwoj3K1vqrjdo0KDkRmKZC9Nw5cd2w90UElY/XeEXZky5zlzdeYVWfEl4++/A==}
+    dev: false
 
   /@esbuild/android-arm64@0.18.20:
     resolution: {integrity: sha512-Nz4rJcchGDtENV0eMKUNa6L12zz2zBDXuhj/Vjh18zGqB44Bi7MBMSXjgunJgjRhCmKOjnPuZp4Mb6OKqtMHLQ==}

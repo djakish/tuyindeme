@@ -7,9 +7,6 @@ const skyzhTemplate = `
   size: 12pt,
 )
 
-#show link: underline
-
-
 #let makeitem(item) = block[
 
     // Idk how to make this better :\
