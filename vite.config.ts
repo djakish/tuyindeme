@@ -9,4 +9,7 @@ export default defineConfig({
     wasm(),
     topLevelAwait()
   ],
+  worker: {
+    format: 'es'
+  }
 })
