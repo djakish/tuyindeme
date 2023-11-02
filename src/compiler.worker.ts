@@ -1,5 +1,4 @@
 import { WorkerCommand } from './types';
-import { addFont, setSource, renderSvgMerged, renderPdf } from '@djakish/render-typst';
 import inter_bold from '../src/assets/fonts/Inter-Bold.ttf'
 import inter_extra_bold from '../src/assets/fonts/Inter-ExtraBold.ttf'
 import inter_regular from '../src/assets/fonts/Inter-Regular.ttf'
@@ -7,6 +6,8 @@ import lin_r from '../src/assets/fonts/LinBiolinum_R.ttf'
 import lin_rb from '../src/assets/fonts/LinBiolinum_RB.ttf'
 import lin_ri from '../src/assets/fonts/LinBiolinum_RI.ttf'
 import newcmm from '../src/assets/fonts/NewCMMath-Book.otf'
+
+import  { addFont,setSource,renderPdf,renderSvgMerged } from '@djakish/render-typst';
 
 await addFont(inter_bold)
 await addFont(inter_extra_bold)
@@ -16,13 +17,14 @@ await addFont(lin_rb)
 await addFont(lin_ri)
 await addFont(newcmm)
 
-function stringToBytes(val: string) { 
-   const result = []; 
-   for (let i = 0; i < val.length; i++) { 
-       result.push(val.charCodeAt(i)); 
-   } 
-   return result; 
-} 
+
+function stringToBytes(val: string) {
+   const result = [];
+   for (let i = 0; i < val.length; i++) {
+      result.push(val.charCodeAt(i));
+   }
+   return result;
+}
 
 onmessage = function (e: MessageEvent<WorkerCommand>) {
    if ("format" in e.data) {
