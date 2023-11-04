@@ -9,13 +9,24 @@ import newcmm from '../src/assets/fonts/NewCMMath-Book.otf'
 
 import  { addFont,setSource,renderPdf,renderSvgMerged } from '@djakish/render-typst';
 
-await addFont(inter_bold)
-await addFont(inter_extra_bold)
-await addFont(inter_regular)
-await addFont(lin_r)
-await addFont(lin_rb)
-await addFont(lin_ri)
-await addFont(newcmm)
+
+await Promise.all([
+   addFont(inter_bold),
+   addFont(inter_extra_bold),
+   addFont(inter_regular),
+   addFont(lin_r),
+   addFont(lin_rb),
+   addFont(lin_ri),
+   addFont(newcmm)
+])
+
+// await addFont(inter_bold),
+// await addFont(inter_extra_bold),
+// await addFont(inter_regular),
+// await addFont(lin_r),
+// await addFont(lin_rb),
+// await addFont(lin_ri),
+// await addFont(newcmm),
 
 
 function stringToBytes(val: string) {
