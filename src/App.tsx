@@ -79,7 +79,7 @@ function App() {
         format: 'svg',
         json: json,
         template: template(),
-        dark: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        dark: true,
       });
       typstWorker.addEventListener('message', function (e) {
         if (e.data.type == 'svg') {
@@ -151,28 +151,28 @@ function App() {
   const toggle = (template: Template) => setTemplate(template)
 
   return (
-    <section class="bg-secondary dark:bg-primary h-full min-h-screen font-mono w-full flex justify-center">
+    <section class="h-full min-h-screen font-mono w-full flex justify-center bg-darkBg">
       <div class="md:w-1/2 w-full">
         <div class=" flex flex-col items-start space-y-4">
           <h1 class='heading-primary ml-4 mt-8'>
             RESUME BUILDER
           </h1>
           <section>
-            <label for="files" class="ml-4 btn-primary dark:btn-primary-dark">Import Json</label>
+            <label for="files" class="ml-4 btn-primary">Import Json</label>
             <input id="files" style="visibility:hidden;" type="file" accept="application/json" onChange={importData} />
           </section>
           {/* Template picker */}
           <section class='pt-4'>
-            <button class={template() == skyzh ? "ml-4 btn-primary-dark dark:btn-primary" : "ml-4 btn-primary dark:btn-primary-dark"} onClick={[toggle, skyzh]}>skyzh</button>
-            <button class={template() == mizlan ? "ml-4 btn-primary-dark dark:btn-primary" : "ml-4 btn-primary dark:btn-primary-dark"} onClick={[toggle, mizlan]}>mizlan</button>
+            <button class={template() == skyzh ? "ml-4 btn-secondary" : "ml-4 btn-primary"} onClick={[toggle, skyzh]}>skyzh</button>
+            <button class={template() == mizlan ? "ml-4 btn-secondary" : "ml-4 btn-primary"} onClick={[toggle, mizlan]}>mizlan</button>
           </section>
           <ResumeForm resume={state} />
         </div>
         <div>
           <div class='flex flex-row justify-between px-4 py-6'>
-            <button class="btn-primary dark:btn-primary-dark" onClick={render}>Preview</button>
-            <button class="btn-primary dark:btn-primary-dark" onClick={exportData}>Export JSON</button>
-            <button class="btn-primary dark:btn-primary-dark" onClick={download}>Download PDF</button>
+            <button class="btn-primary " onClick={render}>Preview</button>
+            <button class="btn-primary " onClick={exportData}>Export JSON</button>
+            <button class="btn-primary" onClick={download}>Download PDF</button>
           </div>
           <div id="preview">
           </div>

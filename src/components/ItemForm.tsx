@@ -23,10 +23,10 @@ function ItemForm(props: { items: Item[] }) {
                 {(item, index) => (
                     <div class="flex flex-col justify-between space-y-4 mt-4">
                         <section class="flex space-x-4 w-full justify-between items-center">
-                            <h1 class="heading-primary">
+                            <h1 class="heading-secondary">
                                 {"#" + (index() + 1)}
                             </h1>
-                            <button class="btn-primary dark:btn-primary-dark" onClick={[deleteItem, index]}>Delete</button>
+                            <button class="btn-primary" onClick={[deleteItem, index]}>Delete</button>
 
                         </section>
 
@@ -58,7 +58,7 @@ function ItemForm(props: { items: Item[] }) {
                                 }}
                             />
                         </section>
-                        <textarea name="description" rows="4" class='py-2 px-4 bg-secondary border-2 border-primary text-primary dark:bg-primary dark:border-secondary dark:text-secondary font-semibold focus:outline-none  focus:ring-1 focus:ring-primary dark:focus:ring-secondary placeholder-gray-400'
+                        <textarea name="description" rows="4" class='py-2 px-4 bg-darkBg border-2 border-darkBorder text-darkText font-semibold focus:outline-none focus:bg-darkBgSecondary  placeholder-gray-400'
                             placeholder='Description'
                             value={item.description} onInput={(e) => {
                                 item.description = e.target.value
@@ -68,7 +68,7 @@ function ItemForm(props: { items: Item[] }) {
                 )}
             </For>
             <section class="flex flex-row justify-end items-center pt-4">
-                <button class="btn-primary dark:btn-primary-dark" onClick={addItem}>Add Item</button>
+                <button class="btn-primary" onClick={addItem}>Add Item</button>
             </section>
         </>
     )

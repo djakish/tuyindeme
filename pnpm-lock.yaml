@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@djakish/render-typst':
-    specifier: ^0.1.6
-    version: 0.1.6
+    specifier: ^0.1.7
+    version: 0.1.7
   solid-js:
     specifier: ^1.7.8
     version: 1.7.8
@@ -373,8 +373,8 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@djakish/render-typst@0.1.6:
-    resolution: {integrity: sha512-Qj/f2Owu6a9gNUr63kDij6prMCv+VIstxaipLztAksaRxzS0wPJd791E8+BdkXU3xuxPKEPGfTZLS1iEvIao1A==}
+  /@djakish/render-typst@0.1.7:
+    resolution: {integrity: sha512-unChZuGA9dfj4GiG8qOZbpNm+flL8V490VcxkrxMshwNkUqW6MZgKPDaOOCwlpx0Wr6KF8ofoZO6dIo3gHn7Dg==}
     dev: false
 
   /@esbuild/android-arm64@0.18.20:

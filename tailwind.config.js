@@ -6,8 +6,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: 'var(--primary)',
-        secondary: 'var(--secondary)',
+        darkBg: 'var(--bg--primary)',
+        darkText: 'var(--text--primary)',
+        darkBorder: 'var(--border--primary)',
+        darkBgSecondary: 'var(--bg--secondary)',
+        darkTextSecondary: 'var(--text--secondary)',
+        darkBorderSecondary: 'var(--border--secondary)',
       },
     },
   },

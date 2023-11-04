@@ -4,29 +4,32 @@
 
 @layer base {
   :root {
-    --primary: #202020;
-    --secondary: #ffffff;
+    --bg--primary: #181a1b;
+    --text--primary: #d4d0ca;
+    --border--primary: #81786a;
+    --bg--secondary: #272a2c;
+    --text--secondary: #e8e6e3;
+    --border--secondary: #303436;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply py-2 px-4 bg-secondary border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-secondary focus:outline-none active:translate-y-1 active:translate-x-1;
+    @apply py-2 px-4 border-2 font-semibold bg-darkBg border-darkBorder focus:outline-none active:translate-y-1 active:translate-x-1 hover:bg-darkBgSecondary;
   }
-
-  .btn-primary-dark {
-    @apply py-2 px-4 bg-primary border-2 border-secondary text-secondary font-semibold hover:bg-secondary hover:text-primary focus:outline-none active:translate-y-1 active:translate-x-1;
+  .btn-secondary {
+    @apply py-2 px-4 border-2 font-semibold bg-darkBgSecondary border-darkBorder focus:outline-none active:translate-y-1 active:translate-x-1;
   }
 
   .input-primary {
-    @apply py-2 px-4 bg-secondary border-2 border-primary text-primary dark:bg-primary dark:border-secondary dark:text-secondary font-semibold focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-secondary placeholder-gray-400;
+    @apply py-2 px-4 border-2 font-semibold focus:outline-none focus:bg-darkBgSecondary bg-darkBg border-darkBorder placeholder-gray-400;
   }
 
   .heading-primary {
-    @apply text-primary dark:text-secondary text-lg font-bold select-none
+    @apply text-lg font-bold select-none text-darkTextSecondary
   }
 
   .heading-secondary {
-    @apply text-secondary dark:text-primary text-lg font-bold select-none
+    @apply text-lg font-bold select-none text-darkText
   }
 }

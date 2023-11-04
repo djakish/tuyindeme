@@ -24,7 +24,7 @@ const ResumeForm = (props: { resume: Resume }) => {
     }
 
     return (
-        <div class="divide-y-4 divide-primary dark:divide-secondary w-full ">
+        <div class="divide-y-4 divide-darkText w-full ">
             {/* Links */}
             <section class="pb-6">
                 <section class="pb-4 pt-4 flex flex-row justify-between items-center px-4 ">
@@ -36,7 +36,7 @@ const ResumeForm = (props: { resume: Resume }) => {
                     <h1 class='heading-primary'>
                         LINKS
                     </h1>
-                    <button class="btn-primary dark:btn-primary-dark" onClick={addUrl}>Add</button>
+                    <button class="btn-primary" onClick={addUrl}>Add</button>
                 </section>
                 <section class="flex flex-col space-y-4 px-4 w-full">
                     <For each={props.resume.urls}>
@@ -48,21 +48,21 @@ const ResumeForm = (props: { resume: Resume }) => {
                                         item.title = e.target.value
                                     }}
                                 />
-                                <button class="btn-primary dark:btn-primary-dark" onClick={() => deleteUrl(index())}>Delete</button>
+                                <button class="btn-primary " onClick={() => deleteUrl(index())}>Delete</button>
                             </section>
                         )}
                     </For>
                 </section>
             </section>
             {/* Sections Divider */}
-            <section class="py-2 flex flex-row justify-between items-center px-4 bg-secondary dark:bg-primary">
+            <section class="py-2 flex flex-row justify-between items-center px-4 bg-secondary ">
                 <h1 class='heading-primary'>
                     SECTIONS
                 </h1>
-                <button class="btn-primary dark:btn-primary-dark" onClick={addSection}>Add</button>
+                <button class="btn-primary " onClick={addSection}>Add</button>
             </section>
             {/* Sections */}
-            <section class="divide-solid divide-primary divide-dashed dark:divide-secondary divide-y-2 ">
+            <section class="divide-solid divide-darkTextScondary divide-dashed divide-y-2 ">
                 <For each={props.resume.sections} >
                     {(section, index) => (
                         <>
@@ -74,7 +74,7 @@ const ResumeForm = (props: { resume: Resume }) => {
                                             section.name = e.target.value
                                         }}
                                     />
-                                    <button class="btn-primary dark:btn-primary-dark" onClick={[deleteSection, index]}>Delete</button>
+                                    <button class="btn-primary " onClick={[deleteSection, index]}>Delete</button>
                                 </section>
                                 <ItemForm items={section.items} />
                             </div>
